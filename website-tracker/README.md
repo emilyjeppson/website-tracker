@@ -2,7 +2,7 @@
 
 This is a simple React webpage to show the implementation of 3 functions: `requestHandled`, `top100`, and `clear`. `top100` is automatically called when the webpage loads and displays the top 100 unique ip addresses.
 
-A "Generate Random Data" button is provided to generate 1,000,000 "quazi" ip addresses (abbreviated addresses in order to generate more duplicates). This button callso `requestHandled` for each ip address. A "Clear Data" button is also provided to call the `clear` method.
+A "Generate Random Data" button is provided to generate 1,000,000 "quazi" ip addresses (abbreviated addresses in order to generate more duplicates). This button calls `requestHandled` for each ip address. A "Clear Data" button is also provided to call the `clear` method.
 
 _Note: this would not be ideal for a production environment because it can't be called from another program, but this was a simple way to implement a progrem that caches ip addresses in memory. The same general implementation could be used in a backend service._
 
