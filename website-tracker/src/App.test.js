@@ -19,6 +19,20 @@ describe("IP Address tracker", () => {
     expect(app.top100()).toEqual([{ ipAddress: ipAddress, count: 1 }]);
   });
 
+  it("doesnt fail if a number is passed in", () => {
+    const app = setup();
+    const ipAddress = 20;
+    app.requestHandled(ipAddress);
+    expect(app.top100()).toEqual([{ ipAddress: "20", count: 1 }]);
+  });
+
+  it("doesnt fail if a boolean is passed in", () => {
+    const app = setup();
+    const ipAddress = false;
+    app.requestHandled(ipAddress);
+    expect(app.top100()).toEqual([{ ipAddress: "false", count: 1 }]);
+  });
+
   it("tracks 1 address 3 times correctly", () => {
     const app = setup();
     const ipAddress = "1.1.1.1";

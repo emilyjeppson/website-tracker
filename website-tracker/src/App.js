@@ -8,14 +8,14 @@ class App extends React.PureComponent {
   // called for each unique address
   //
   // No validation on ip address for simplicity - we'll
-  // just match on any string passed in
+  // coerce to a string match on any matching string
   requestHandled = (ipAddress) => {
     // Since we don't need any additional metadata about each request,
     // only record a count for each ip address
-    const ipCount = (this.ipData[ipAddress] || 0) + 1;
-    this.ipData[ipAddress] = ipCount;
+    const ipCount = (this.ipData[`${ipAddress}`] || 0) + 1;
+    this.ipData[`${ipAddress}`] = ipCount;
 
-    this.optionallyAddToTop100(ipAddress, ipCount);
+    this.optionallyAddToTop100(`${ipAddress}`, ipCount);
   };
 
   clear = () => {
