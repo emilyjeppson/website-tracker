@@ -4,7 +4,11 @@ const numberToReturn = 100;
 
 class App extends React.PureComponent {
   // Handle a request for an IP address by
-  // counting the number of times each unique address is used
+  // counting the number of times this method is
+  // called for each unique address
+  //
+  // No validation on ip address for simplicity - we'll
+  // just match on any string passed in
   requestHandled = (ipAddress) => {
     // Since we don't need any additional metadata about each request,
     // only record a count for each ip address
@@ -70,11 +74,9 @@ class App extends React.PureComponent {
   // will have the format 000.000
   generateRandomData = () => {
     for (let i = 0; i < 1000000; i++) {
-      const randomIp =
-        "" +
-        Math.floor(Math.random() * 1000) +
-        "." +
-        Math.floor(Math.random() * 1000);
+      const randomIp = `${Math.floor(Math.random() * 1000)}.${Math.floor(
+        Math.random() * 1000
+      )}`;
       this.requestHandled(randomIp);
     }
     this.setState({ updated: new Date() });
