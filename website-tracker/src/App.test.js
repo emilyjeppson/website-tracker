@@ -60,12 +60,26 @@ describe("IP Address tracker", () => {
     ]);
   });
 
-  it("returns a maximum of 100 ip addresses", () => {
+  it("returns a maximum of 100 ip addresses, all unique", () => {
     const app = setup();
     for (let i = 0; i < 201; i++) {
       app.requestHandled(`${i}.${i}.${i}.${i}`);
     }
     expect(app.top100()).toHaveLength(100);
+  });
+
+  it("returns a maximum of 100 ip addresses, with some duplicates", () => {
+    const app = setup();
+    // add unique ips
+    for (let i = 0; i < 201; i++) {
+      app.requestHandled(`${i}.${i}.${i}.${i}`);
+    }
+    // add duplicates (51 including above)
+    for (let i = 0; i < 50; i++) {
+      app.requestHandled("20.20.20.20");
+    }
+    expect(app.top100()).toHaveLength(100);
+    expect(app.top100()[0]).toEqual({ ipAddress: "20.20.20.20", count: 51 });
   });
 
   it("handles adding a million ip addresses in a timely manner", () => {
